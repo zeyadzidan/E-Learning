@@ -1,19 +1,29 @@
-import { Button } from "@mui/material";
+import { Button, IconButton, Stack, Typography } from "@mui/material";
 import SearchBar from "./SearchBar/SearchBar";
-import Box from "@mui/material/Box";
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 export default function Header() {
     return (
-        <Box
-            display="flex"
+        <Stack
+            direction="row"
+            spacing={10}
             justifyContent="center"
             alignItems="center"
+            style={{
+                height: '75px'
+            }}
         >
-            <div>Edugram</div>
+            <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" style={{ color: '#29AB87', cursor: 'pointer' }}>
+                <DonutLargeIcon />
+                <Typography variant="h5">Edugram</Typography>
+            </Stack>
             <SearchBar />
-            <Button>Cart</Button>
-            <Button>Login</Button>
-            <Button>Signup</Button>
-        </Box>
+            <Stack direction="row" spacing={2} justifyContent="center" alignItems="center">
+                <IconButton onClick={() => { console.log('Cart Button Clicked') }}> <ShoppingCartOutlinedIcon color="primary" /> </IconButton>
+                <Button onClick={() => { console.log('Login Button Clicked') }} variant="outlined" sx={{ padding: '3% 25%' }}>Login</Button>
+                <Button onClick={() => { console.log('Signup Button Clicked') }} variant="contained" sx={{ padding: '3% 25%', color: 'white' }} disableElevation>Signup</Button>
+            </Stack>
+        </Stack>
     )
 }
