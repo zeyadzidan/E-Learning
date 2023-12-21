@@ -14,7 +14,7 @@ const mainTheme = createTheme({
             main: '#FFFFFF',  // White
         },
         tertiary: {
-            main: "#F1F1F1"   // Almost White
+            main: "#FAFAFA"   // Almost White
         },
         error: {
             main: '#FF0000',  // Red
@@ -23,7 +23,7 @@ const mainTheme = createTheme({
             main: '#FFA500',  // Orange
         },
         info: {
-            main: '#FFD300'   // Yellow
+            main: '#FFC800'   // Yellow
         },
         success: {
             main: '#4CAF50',  // Green
