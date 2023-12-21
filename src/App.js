@@ -1,9 +1,9 @@
-import Page from "./components/Page";
+import LandingPage from "./components/LandingPage";
 
 export default function App() {
     return (
         <div>
-            <Page />
+            <LandingPage />
         </div>
     )
 }
