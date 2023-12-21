@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const server = "http://localhost:3005"
+const server = "https://apistaging.inclass.app"
+const api = "api"
+const version = "v1"
 
 export const coursesApi = createApi({
     reducerPath: "courses",
