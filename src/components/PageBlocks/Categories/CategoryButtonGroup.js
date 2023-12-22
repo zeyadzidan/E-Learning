@@ -51,7 +51,7 @@ export default function CategoryButtonsGroup({ categories }) {
             justifyContent="center"
             bgcolor="secondary.main"
             width="90%"
-            height="15%"
+            height="125px"
             borderRadius="150px 150px 150px 150px"
         >
             <IconButton
