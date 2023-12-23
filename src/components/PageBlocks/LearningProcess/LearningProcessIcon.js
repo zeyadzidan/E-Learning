@@ -5,7 +5,7 @@ export default function LearningProcessIcon({ icon, text }) {
     const mainTheme = useTheme();
 
     return (
-        <Stack direction="column" spacing={2} alignItems="center" justifyContent="center">
+        <Stack direction="column" spacing={4} alignItems="center" justifyContent="center">
             <Stack
                 width="160px"
                 height="160px"
@@ -17,7 +17,7 @@ export default function LearningProcessIcon({ icon, text }) {
             >
                 {icon}
             </Stack>
-            <Typography variant="h4" marginTop="20%">{text}</Typography>
+            <Typography variant="h4">{text}</Typography>
         </Stack>
     )
 }
