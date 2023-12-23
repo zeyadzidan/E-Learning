@@ -1,12 +1,12 @@
 import { useState } from "react";
-import CourseCard from "./CourseCard";
+import Card from "./Card";
 import { IconButton, Stack } from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-export default function CourseCardsList({ courses }) {
+export default function CardsList({ content, isForCourses, displayedCards, byRating }) {
     const [start, setStart] = useState(0);
-    const [end, setEnd] = useState(4);
+    const [end, setEnd] = useState(displayedCards);
 
     const handleLeftArrowClicked = () => {
         setStart((current) => current -= 1);
@@ -18,36 +18,38 @@ export default function CourseCardsList({ courses }) {
         setEnd((current) => current += 1);
     }
 
-    let slicedCourses = courses.slice(start, end);
+    let slicedContent = content.slice(start, end);
 
-    const renderedSlicedCourses = slicedCourses.map((course) => <CourseCard key={course.name} course={course} />);
+    const renderedContent = slicedContent.map((content) => <Card key={content.name} content={content} isCourse={isForCourses} />);
 
     return (
         <Stack
             direction="row"
             spacing={10}
             marginTop="3%"
+            marginBottom="3%"
             alignItems="center"
             justifyContent="center"
             width="90%"
+            height="50%"
             borderRadius="150px 150px 150px 150px"
         >
             <IconButton
                 color="primary"
                 disabled={start === 0}
                 onClick={handleLeftArrowClicked}
-            > <KeyboardArrowLeftIcon sx={{ fontSize: "42px" }} />
+            > <KeyboardArrowLeftIcon sx={{ fontSize: "72px" }} />
             </IconButton>
 
             <Stack direction="row" alignItems="center" spacing={3} justifyContent="center">
-                {renderedSlicedCourses}
+                {renderedContent}
             </Stack>
 
             <IconButton
                 color="primary"
-                disabled={end === (courses.length)}
+                disabled={end === (content.length)}
                 onClick={handleRightArrowClicked}
-            > <KeyboardArrowRightIcon sx={{ fontSize: "42px" }} />
+            > <KeyboardArrowRightIcon sx={{ fontSize: "72px" }} />
             </IconButton>
         </Stack>
     )

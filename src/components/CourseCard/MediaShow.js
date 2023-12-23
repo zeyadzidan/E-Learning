@@ -14,6 +14,8 @@ export default function MediaShow({ image }) {
                 alt="books"
                 sx={{
                     borderRadius: '20px 20px 20px 20px',
+                    maxHeight: "20%",
+                    overflow: 'hidden'
                 }}
             />
             <Tooltip
