@@ -2,12 +2,11 @@ import { Stack, Typography } from "@mui/material";
 import learningMan from '../../assets/images/man_learning_with_earth_in_the_bg.svg'
 import { useTheme } from "@emotion/react";
 
-
 export default function Intro() {
     const mainTheme = useTheme();
 
     return (
-        <Stack direction="row" ml={5} marginTop="5%">
+        <Stack direction="row" marginTop="5%">
             <Stack direction="column" alignItems="left" marginLeft="5%">
                 <Typography variant="h3" marginTop="20%" width="60%">
                     <span style={{ color: mainTheme.palette.primary.main }}>
