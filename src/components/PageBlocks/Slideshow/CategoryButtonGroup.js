@@ -1,76 +1,83 @@
 import { Button, IconButton, Stack } from "@mui/material";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useState } from "react";
+import mainTheme from "../../../themes/main-theme";
 
-export default function CategoryButtonsGroup({ categories, displayedCategories }) {
+export default function CategoryButtonsGroup({
+  categories,
+  displayedCategories,
+}) {
+  const [selected, setSelected] = useState(2);
+  const [stIdx, setStIdx] = useState(0);
+  const [enIdx, setEnIdx] = useState(displayedCategories);
 
-    const [selected, setSelected] = useState(null);
-    const [stIdx, setStIdx] = useState(0);
-    const [enIdx, setEnIdx] = useState(displayedCategories);
+  let categoriesSlice = categories.slice(stIdx, enIdx);
 
-    let categoriesSlice = categories.slice(stIdx, enIdx);
+  const handleCategoryClicked = (id) =>
+    setSelected((current) => (current = id));
 
-    const handleCategoryClicked = (id) => setSelected((current) => current = id)
+  const handleLeftArrowClicked = () => {
+    setStIdx((current) => (current -= 1));
+    setEnIdx((current) => (current -= 1));
+  };
 
-    const handleLeftArrowClicked = () => {
-        setStIdx((current) => current -= 1);
-        setEnIdx((current) => current -= 1);
-    }
+  const handleRightArrowClicked = () => {
+    setStIdx((current) => (current += 1));
+    setEnIdx((current) => (current += 1));
+  };
 
-    const handleRightArrowClicked = () => {
-        setStIdx((current) => current += 1);
-        setEnIdx((current) => current += 1);
-    }
-
-    const renderedCategoryButtons = categoriesSlice.map((category) => {
-        return (
-            <Button
-                key={category.name}
-                color="primary"
-                onClick={() => handleCategoryClicked(category.id)}
-                sx={{
-                    fontSize: "24px",
-                    borderRadius: "150px 150px 150px 150px",
-                    padding: '1.5rem 4rem',
-                }}
-                disableElevation
-                disabled={selected === category.id}
-            >
-                {category.name}
-            </Button>
-        )
-    });
-
+  const renderedCategoryButtons = categoriesSlice.map((category) => {
     return (
-        <Stack
-            direction="row"
-            spacing={10}
-            marginTop="5%"
-            alignItems="center"
-            justifyContent="center"
-            bgcolor="secondary.main"
-            width="90%"
-            height="50%"
-            borderRadius="150px 150px 150px 150px"
-        >
-            <IconButton
-                color="primary"
-                disabled={stIdx === 0}
-                onClick={handleLeftArrowClicked}
-            > <KeyboardArrowLeftIcon sx={{ fontSize: "42px" }} />
-            </IconButton>
-
-            <Stack direction="row" alignItems="center" spacing={3} justifyContent="center" width="80%" height="100%">
-                {renderedCategoryButtons}
-            </Stack>
-
-            <IconButton
-                color="primary"
-                disabled={enIdx === (categories.length)}
-                onClick={handleRightArrowClicked}
-            > <KeyboardArrowRightIcon sx={{ fontSize: "42px" }} />
-            </IconButton>
-        </Stack>
+      <Button
+        key={category.name}
+        variant={selected === category.id ? "contained" : ""}
+        disabled={selected === category.id}
+        onClick={() => handleCategoryClicked(category.id)}
+        disableElevation
+        sx={{
+          fontSize: "22px",
+          fontWeight: "600",
+          lineHeight: "24px",
+          letterSpacing: "0.73px",
+          textTransform: "none",
+          "&:disabled": {
+            color: mainTheme.palette.primary.main,
+            backgroundColor: mainTheme.palette.bgPrimary.main,
+          },
+          padding: "20px 30px",
+          borderRadius: "10px",
+        }}
+      >
+        {category.name}
+      </Button>
     );
+  });
+
+  return (
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      width="80%"
+    >
+      <IconButton
+        color="primary"
+        disabled={stIdx === 0}
+        onClick={handleLeftArrowClicked}
+      >
+        <KeyboardArrowLeftIcon sx={{ fontSize: "42px" }} />
+      </IconButton>
+
+      {renderedCategoryButtons}
+
+      <IconButton
+        color="primary"
+        disabled={enIdx === categories.length}
+        onClick={handleRightArrowClicked}
+      >
+        <KeyboardArrowRightIcon sx={{ fontSize: "42px" }} />
+      </IconButton>
+    </Stack>
+  );
 }

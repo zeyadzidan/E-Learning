@@ -1,65 +1,131 @@
-import { Button, CardContent, CardHeader, Rating, Stack, Typography } from "@mui/material";
-import MediaShow from "./MediaShow";
-import books from '../../assets/images/books.jpg'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Box, Button, Rating, Stack, Typography } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-export default function Card({ content, isCourse }) {
+export default function Card({ content, isCourse, image }) {
+  return (
+    <Box
+      sx={{
+        borderRadius: "20px",
+        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.5)",
+        overflow: "hidden",
+        width: "320px",
+        height: isCourse ? "550px" : "400px",
+        position: "relative",
+      }}
+      bgcolor="bgPrimary.main"
+    >
+      <Box height="35%" margin="auto">
+        <img
+          src={image}
+          alt="books"
+          style={{ width: "100%", height: "100%" }}
+        />
+      </Box>
 
-    const name = content.name.length > 30 ? content.name.slice(0, 27) + '...' : content.name;
-    const description = content.name.length > 100 ? content.name.slice(0, 97) + '...' : content.name;
-
-    // TODO: Fetch some images through url requests.
-    // const [image, setImage] = useState(null);
-    // const onLoad = useCallback(async () => {
-    //     try {
-    //         const response = await fetchImages(course.name);
-    //         const fetched = response.data.results[0];
-    //         console.log(fetched);
-    //         setImage(fetched);
-    //     } catch (error) {
-    //         console.error('Error fetching image:', error);
-    //     }
-    // }, [course.name]);
-
-    // useEffect(() => { onLoad() }, [onLoad]);
-    // TODO: END
-
-    return (
-        <Stack
-            sx={{
-                borderRadius: "20px 20px 20px 20px",
-                maxWidth: '1/4',
-                width: "20rem",
-                height: isCourse ? "42rem" : "28rem",
-                position: 'relative',
-            }}
-            bgcolor="secondary.main"
+      <Box
+        width="90%"
+        height="45%"
+        margin="30px auto"
+        overflow="auto"
+        bgcolor="red"
+      >
+        <Typography
+          sx={{
+            fontWeight: "700",
+            fontSize: "16px",
+            lineHeight: "23px",
+            letterSpacing: "-0.38",
+          }}
         >
-            <CardContent>
-                <MediaShow image={books} />
-            </CardContent>
-            <CardHeader title={name} subheader={content.instructor} />
+          {content.name}
+        </Typography>
+        <Box
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-evenly"
+          alignItems="center"
+          width="50%"
+        >
+          [// TODO: finish this.]
+          <Typography
+            color="secondary.main"
+            sx={{
+              fontWeight: "600",
+              fontSize: "14px",
+              lineHeight: "17.5px",
+              letterSpacing: "-0.34",
+            }}
+          >
+            {content.rating}
+          </Typography>
+          <Rating
+            name="read-only"
+            value={content.rating}
+            readOnly
+            sx={{ margin: "10px 0", fontSize: "24px" }}
+          />
+        </Box>
 
-            {
-                isCourse &&
-                <Stack margin={2} justifyContent="center" alignItems="flex-start">
-                    <Rating name="read-only" value={content.rating} readOnly />
-                    <Typography variant="body1">
-                        {description}
-                    </Typography>
-                </Stack>
-            }
-            {
-                isCourse &&
-                <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" position="absolute" style={{ bottom: '5%', right: "5%", left: "5%" }}>
-                    <Button variant="outlined" color="primary" sx={{ padding: "2% 20%" }} onClick={() => { console.log(`Enrolled in ${content.name}`) }}>
-                        Enroll Now
-                    </Button>
-                    <Button variant="outlined" color="primary" onClick={() => { console.log(`Added ${content.name} to shopping cart.`) }}>
-                        <ShoppingCartIcon />
-                    </Button>
-                </Stack>
-            }
+        <Typography
+          sx={{
+            fontWeight: "600",
+            fontSize: "12px",
+            lineHeight: "15px",
+            letterSpacing: "-0.29",
+          }}
+        >
+          {content.name}
+        </Typography>
+        <Typography
+          padding="20px 0"
+          sx={{
+            fontWeight: "500",
+            fontSize: "11px",
+            lineHeight: "16px",
+            letterSpacing: "0.37",
+          }}
+        >
+          {content.name}
+        </Typography>
+      </Box>
+
+      {isCourse && (
+        <Stack
+          margin={2}
+          justifyContent="center"
+          alignItems="flex-start"
+        ></Stack>
+      )}
+      {isCourse && (
+        <Stack
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          justifyContent="center"
+          position="absolute"
+          style={{ bottom: "5%", right: "5%", left: "5%" }}
+        >
+          <Button
+            variant="outlined"
+            color="primary"
+            sx={{ padding: "2% 20%" }}
+            onClick={() => {
+              console.log(`Enrolled in ${content.name}`);
+            }}
+          >
+            Enroll Now
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              console.log(`Added ${content.name} to shopping cart.`);
+            }}
+          >
+            <ShoppingCartIcon />
+          </Button>
         </Stack>
-    )
+      )}
+    </Box>
+  );
 }

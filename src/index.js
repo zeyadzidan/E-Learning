@@ -4,11 +4,11 @@ import App from "./App";
 import { ThemeProvider } from "@emotion/react";
 import mainTheme from "./themes/main-theme";
 
-const element = document.getElementById('root');
+const element = document.getElementById("root");
 const root = createRoot(element);
 
 root.render(
-    <ThemeProvider theme={mainTheme}>
-        <App />
-    </ThemeProvider>
+  <ThemeProvider theme={mainTheme}>
+    <App />
+  </ThemeProvider>
 );

@@ -1,23 +1,26 @@
-import { useTheme } from "@emotion/react";
 import { Stack, Typography } from "@mui/material";
 
-export default function LearningProcessIcon({ icon, text }) {
-    const mainTheme = useTheme();
+export default function LearningProcessCard({ image, text }) {
 
-    return (
-        <Stack direction="column" spacing={4} alignItems="center" justifyContent="center">
-            <Stack
-                width="160px"
-                height="160px"
-                bgcolor="tertiary.main"
-                borderRadius="20%"
-                border={`2px solid ${mainTheme.palette.primary.main}`}
-                alignItems="center"
-                justifyContent="center"
-            >
-                {icon}
-            </Stack>
-            <Typography variant="h4">{text}</Typography>
-        </Stack>
-    )
+  return (
+    <Stack
+      direction="column"
+      spacing={4}
+      alignItems="center"
+      justifyContent="center"
+    >
+      {image}
+      <Typography
+        variant="h4"
+        sx={{
+          fontSize: "24px",
+          lineHeight: "14px",
+          fontWeight: "700",
+          letterSpacing: "0.8px",
+        }}
+      >
+        {text}
+      </Typography>
+    </Stack>
+  );
 }

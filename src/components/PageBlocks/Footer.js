@@ -20,6 +20,9 @@ export default function Footer() {
                         direction="row"
                         spacing={4}
                         alignItems="center"
+                        sx={{
+                            cursor: "pointer"
+                        }}
                     >
                         <DonutLargeIcon color="primary" sx={{ fontSize: "4rem" }} />
                         <Typography variant="h5" color="primary" sx={{ fontSize: "4rem" }}>Edugram</Typography>
@@ -47,7 +50,7 @@ export default function Footer() {
                     direction="column"
                     spacing={3}
                 >
-                    <Typography variant="h4" color="primary.main">Sitemap</Typography>
+                    <Typography variant="h4" color="primary.main" sx={{ cursor: "pointer" }}>Sitemap</Typography>
                     <Typography variant="h5" color="misc.main">Home</Typography>
                     <Typography variant="h5" color="misc.main">About us</Typography>
                     <Typography variant="h5" color="misc.main">Contact us</Typography>
@@ -56,7 +59,7 @@ export default function Footer() {
                     direction="column"
                     spacing={3}
                 >
-                    <Typography variant="h4" color="primary.main">Our Clients</Typography>
+                    <Typography variant="h4" color="primary.main" sx={{ cursor: "pointer" }}>Our Clients</Typography>
                     <Typography variant="h5" color="misc.main">IBM</Typography>
                     <Typography variant="h5" color="misc.main">Intell</Typography>
                     <Typography variant="h5" color="misc.main">Apple</Typography>
@@ -65,7 +68,7 @@ export default function Footer() {
                     direction="column"
                     spacing={3}
                 >
-                    <Typography variant="h4" color="primary.main">Support</Typography>
+                    <Typography variant="h4" color="primary.main" sx={{ cursor: "pointer" }}>Support</Typography>
                     <Typography variant="h5" color="misc.main">Terms & Conditions</Typography>
                     <Typography variant="h5" color="misc.main">Privacy Policy</Typography>
                 </Stack>
