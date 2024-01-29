@@ -1,5 +1,4 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { useTheme } from "@emotion/react";
 import CardsList from "../../CourseCard/CardsList";
 import CategoryButtonsGroup from "./CategoryButtonGroup";
@@ -66,6 +65,7 @@ export default function Slideshow({
       spacing={8}
       alignItems="center"
       bgcolor="bgSecondary.main"
+      paddingBottom="100px"
     >
       <Box>
         <Typography
@@ -108,15 +108,20 @@ export default function Slideshow({
       <CardsList
         content={courses}
         isForCourses={isForCourses}
+        byRating={byRating}
         displayedCards={displayedCards}
       />
 
       {!byRating && (
         <Button
           sx={{
-            padding: "0.75rem 3rem",
+            width: "314px",
+            height: "52px",
             color: mainTheme.palette.bgPrimary.main,
-            fontSize: "16px",
+            fontWeight: "600",
+            fontSize: "22px",
+            lineHeight: "27.5px",
+            letterSpacing: "0.21px",
             borderRadius: "10px 10px 10px 10px",
             textTransform: "none",
           }}
@@ -126,7 +131,6 @@ export default function Slideshow({
             console.log("Clicked View More Courses.");
           }}
         >
-          <LibraryBooksIcon sx={{ marginRight: "20px" }} />
           {isForCourses && "View More Courses"}
           {!isForCourses && "View More Certificates"}
         </Button>
