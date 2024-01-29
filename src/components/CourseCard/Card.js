@@ -27,7 +27,6 @@ export default function Card({ content, isCourse, image }) {
         height="45%"
         margin="30px auto"
         overflow="auto"
-        bgcolor="red"
       >
         <Typography
           sx={{
@@ -46,7 +45,6 @@ export default function Card({ content, isCourse, image }) {
           alignItems="center"
           width="50%"
         >
-          [// TODO: finish this.]
           <Typography
             color="secondary.main"
             sx={{
@@ -74,19 +72,22 @@ export default function Card({ content, isCourse, image }) {
             letterSpacing: "-0.29",
           }}
         >
-          {content.name}
+          {content.instructor}
         </Typography>
-        <Typography
-          padding="20px 0"
-          sx={{
-            fontWeight: "500",
-            fontSize: "11px",
-            lineHeight: "16px",
-            letterSpacing: "0.37",
-          }}
-        >
-          {content.name}
-        </Typography>
+
+        {isCourse && (
+          <Typography
+            padding="20px 0"
+            sx={{
+              fontWeight: "500",
+              fontSize: "11px",
+              lineHeight: "16px",
+              letterSpacing: "0.37",
+            }}
+          >
+            {content.name}
+          </Typography>
+        )}
       </Box>
 
       {isCourse && (
