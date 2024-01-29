@@ -1,11 +1,10 @@
-import { Stack } from "@mui/material";
-import Header from "./PageBlocks/Header/Header";
 import Intro from "./PageBlocks/Intro";
 import LearningProcess from "./PageBlocks/LearningProcess/LearningProcess";
 import Benefits from "./PageBlocks/Benefits";
 import Slideshow from "./PageBlocks/Slideshow/Slideshow";
 import Footer from "./PageBlocks/Footer";
 import Clients from "./PageBlocks/Clients";
+import { Stack } from "@mui/material";
 
 export default function LandingPage() {
   const coursesCategories = [
@@ -27,16 +26,15 @@ export default function LandingPage() {
   ];
 
   return (
-    <>
+    <Stack position="absolute" top="105px" right="0" left="0">
       <Intro />
       <LearningProcess />
       <Slideshow categories={coursesCategories} isForCourses displayedCategories={5} displayedCards={4} />
-      {/* <Benefits /> */}
-      {/* <Slideshow isForCourses byRating displayedCards={3} /> */}
-      {/* <Clients /> */}
-      {/* <Slideshow categories={certCategories} displayedCategories={4} displayedCards={4} /> */}
-      {/* <Footer /> */}
-      <Header />
-    </>
+      <Benefits />
+      <Slideshow isForCourses byRating displayedCards={3} />
+      <Clients />
+      <Slideshow categories={certCategories} displayedCategories={4} displayedCards={4} />
+      <Footer />
+    </Stack>
   );
 }
