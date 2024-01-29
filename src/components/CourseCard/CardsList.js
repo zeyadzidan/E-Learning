@@ -7,12 +7,21 @@ import course1 from "../../assets/course 1.png";
 import course2 from "../../assets/course 2.png";
 import course3 from "../../assets/course 3.png";
 import course4 from "../../assets/course 4.png";
+import googleCert from "../../assets/google_cert.png";
+import gCloudCert from "../../assets/gcloud_cert.png";
+import ibmCert from "../../assets/ibm_cert.png";
 
-export default function CardsList({ content, isForCourses, displayedCards }) {
+export default function CardsList({
+  content,
+  isForCourses,
+  byRating,
+  displayedCards,
+}) {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(displayedCards);
 
   const courses = [course1, course2, course3, course4];
+  const certs = [googleCert, ibmCert, gCloudCert, ibmCert];
 
   const handleLeftArrowClicked = () => {
     setStart((current) => (current -= 1));
@@ -24,49 +33,56 @@ export default function CardsList({ content, isForCourses, displayedCards }) {
     setEnd((current) => (current += 1));
   };
 
-  let slicedContent = content.slice(start, end);
+  let sortedContent = [...content].sort((x, y) => y.rating - x.rating); // Highest rating first
+
+  let slicedContent = byRating
+    ? sortedContent.slice(start, end)
+    : content.slice(start, end);
 
   const renderedContent = slicedContent.map((content, index) => (
     <Card
       key={content.name}
       content={content}
       isCourse={isForCourses}
-      image={courses[index % displayedCards]}
+      image={isForCourses ? courses[index % courses.length] : certs[index % certs.length]}
     />
   ));
 
   return (
     <Stack
       direction="row"
-      spacing={10}
-      bgcolor="red"
-      justifyContent="space-evenly"
-      width="90%"
+      justifyContent={byRating ? "center" : "space-between"}
+      alignItems="center"
+      width="85%"
     >
-      <IconButton
-        color="primary"
-        disabled={start === 0}
-        onClick={handleLeftArrowClicked}
-      >
-        <KeyboardArrowLeftIcon sx={{ fontSize: "72px" }} />
-      </IconButton>
-
+      {!byRating && (
+        <IconButton
+          color="primary"
+          disabled={start === 0}
+          onClick={handleLeftArrowClicked}
+          sx={{ width: "60px", height: "60px" }}
+        >
+          <KeyboardArrowLeftIcon sx={{ fontSize: "60px" }} />
+        </IconButton>
+      )}
       <Stack
         direction="row"
         alignItems="center"
-        spacing={3}
-        justifyContent="center"
+        justifyContent="space-around"
+        width="80%"
       >
         {renderedContent}
       </Stack>
-
-      <IconButton
-        color="primary"
-        disabled={end === content.length}
-        onClick={handleRightArrowClicked}
-      >
-        <KeyboardArrowRightIcon sx={{ fontSize: "72px" }} />
-      </IconButton>
+      {!byRating && (
+        <IconButton
+          color="primary"
+          disabled={end === content.length}
+          onClick={handleRightArrowClicked}
+          sx={{ width: "60px", height: "60px" }}
+        >
+          <KeyboardArrowRightIcon sx={{ fontSize: "60px" }} />
+        </IconButton>
+      )}
     </Stack>
   );
 }
