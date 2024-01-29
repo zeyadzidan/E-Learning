@@ -6,7 +6,7 @@ export default function Intro() {
   const mainTheme = useTheme();
 
   return (
-    <Box display="flex" flexDirection="column" justifyContent="flex-end" height="700px">
+    <Box display="flex" flexDirection="column" justifyContent="flex-start" height="640px">
       <Box
         display="flex"
         flexDirection="row" // Default
