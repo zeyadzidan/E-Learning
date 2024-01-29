@@ -1,38 +1,59 @@
 import { Button, Stack, Typography } from "@mui/material";
-import appleLogo from "../../assets/images/clients/apple-logo-svgrepo-com.svg";
-import googleLogo from "../../assets/images/clients/google-svgrepo-com.svg";
-import ibmLogo from "../../assets/images/clients/ibm-svgrepo-com.svg";
-import intelLogo from "../../assets/images/clients/intel-svgrepo-com.svg";
-import microsoftLogo from "../../assets/images/clients/microsoft-svgrepo-com.svg";
+import appleLogo from "../../assets/apple.png";
+import googleLogo from "../../assets/google.png";
+import ibmLogo from "../../assets/ibm.png";
+import intelLogo from "../../assets/intel.png";
+import microsoftLogo from "../../assets/microsoft.png";
 
 export default function Clients() {
-    return (
-        <Stack direction="row" width="100%" height="15rem" marginTop="1%" marginBottom="1%" justifyContent="center">
-            <Stack direction="column" spacing={6}>
-                <Stack direction="row" justifyContent="center" alignItems="center">
-                    <Typography variant="h3" marginTop="1%" color="info.main">
-                        Our Clients
-                    </Typography>
-                    <Button
-                        sx={{
-                            right: '2rem',
-                            padding: '1rem 3rem',
-                            borderRadius: '1rem 1rem 1rem 1rem',
-                            position: "absolute",
-                            fontSize: "16px"
-                        }}
-                    >
-                        View All
-                    </Button>
-                </Stack>
-                <Stack direction="row" spacing={30} justifyContent="center" alignItems="center">
-                    <img width="5%" height="80px" src={appleLogo} alt="apple_logo" />
-                    <img width="5%" height="90px" src={intelLogo} alt="intel_logo" />
-                    <img width="5%" src={ibmLogo} alt="ibm_logo" />
-                    <img width="5%" height="70px" src={microsoftLogo} alt="microsoft_logo" />
-                    <img width="5%" height="90px" src={googleLogo} alt="google_logo" />
-                </Stack>
-            </Stack>
-        </Stack>
-    )
+  return (
+    <Stack
+      direction="row"
+      width="100%"
+      height="230px"
+      flexWrap="wrap"
+      justifyContent="flex-end"
+      paddingBottom="20px"
+    >
+      <Stack direction="row" width="66%" justifyContent="space-around" alignItems="center">
+        <Typography
+          color="secondary.main"
+          sx={{
+            fontWeight: "700",
+            fontSize: "32px",
+            lineHeight: "40px",
+            letterSpacing: "1.07",
+          }}
+        >
+          Our Clients
+        </Typography>
+        <Button
+          sx={{
+            borderRadius: "10px 10px 10px 10px",
+            textTransform: "none",
+            fontWeight: "600",
+            fontSize: "26px",
+            lineHeight: "32.5px",
+            letterSpacing: "0.87",
+            width: "150px",
+            height: "60px",
+          }}
+        >
+          View All
+        </Button>
+      </Stack>
+      <Stack
+        direction="row"
+        justifyContent="space-around"
+        width="100%"
+        alignItems="center"
+      >
+        <img src={appleLogo} alt="apple_logo" />
+        <img src={intelLogo} alt="intel_logo" />
+        <img src={ibmLogo} alt="ibm_logo" />
+        <img src={microsoftLogo} alt="microsoft_logo" />
+        <img src={googleLogo} alt="google_logo" />
+      </Stack>
+    </Stack>
+  );
 }
