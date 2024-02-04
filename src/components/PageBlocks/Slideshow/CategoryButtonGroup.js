@@ -6,16 +6,21 @@ import mainTheme from "../../../themes/main-theme";
 
 export default function CategoryButtonsGroup({
   categories,
+  categoryState,
+  resetCards,
   displayedCategories,
 }) {
-  const [selected, setSelected] = useState(2);
+
+  const { selected, setSelected } = categoryState;
   const [stIdx, setStIdx] = useState(0);
   const [enIdx, setEnIdx] = useState(displayedCategories);
 
   let categoriesSlice = categories.slice(stIdx, enIdx);
 
-  const handleCategoryClicked = (id) =>
+  const handleCategoryClicked = (id) => {
     setSelected((current) => (current = id));
+    resetCards();
+  }
 
   const handleLeftArrowClicked = () => {
     setStIdx((current) => (current -= 1));
@@ -47,6 +52,7 @@ export default function CategoryButtonsGroup({
           },
           padding: "20px 30px",
           borderRadius: "10px",
+          margin: "0 10px",
         }}
       >
         {category.name}
