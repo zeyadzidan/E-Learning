@@ -1,7 +1,11 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import CardsList from "../../CourseCard/CardsList";
+import CardsList from "../../Cards/CardsList";
 import CategoryButtonsGroup from "./CategoryButtonGroup";
+import { useEffect, useState } from "react";
+import { fetchCoursesByCriteria } from "../../../fetchCoursesByCriteria";
+import { staticCourses } from "./courses";
+import { certificates } from "./certificates";
 
 export default function Slideshow({
   categories,
@@ -12,52 +16,60 @@ export default function Slideshow({
 }) {
   const mainTheme = useTheme();
 
-  // TODO: Handle this to fetch courses according to selected category. [USE CONTEXT]
-  // const [selectedCtg, setSelectedCtg] = useState('');
+  const [selected, setSelected] = useState(0);
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(displayedCards);
+  const [response, setResponse] = useState();
 
-  // TODO: Handle real courses data.
-  const courses = [
-    {
-      name: "Introduction to Machine Learning",
-      tags: "machine learning",
-      instructor: "Prof. Ayman Khalafallah",
-      rating: 1,
-      discountedPrice: 17.99,
-      price: 40.99,
-    },
-    {
-      name: "Cracking the nut of security systems in a nutshell savjnkd ajksndvdjahbskjba djhkfb adkfjb djhkb adjhk fbh bsdahj badjhk bahkjabv djhk bahjk vadbh va",
-      tags: "security systems",
-      instructor: "Prof. Ahmed Kosba",
-      rating: 5,
-      discountedPrice: 17.99,
-      price: 40.99,
-    },
-    {
-      name: "Computer Vision",
-      tags: "computer vision",
-      instructor: "Prof. Marwan Torki",
-      rating: 2,
-      discountedPrice: 17.99,
-      price: 40.99,
-    },
-    {
-      name: "Getting a life",
-      tags: "grass",
-      instructor: "Prof. Zeyad Zidan",
-      rating: 5,
-      discountedPrice: 17.99,
-      price: 40.99,
-    },
-    {
-      name: "Game Development",
-      tags: "video games",
-      instructor: "Epic Games Professors",
-      rating: 3,
-      discountedPrice: 17.99,
-      price: 40.99,
-    },
-  ];
+  const resetCards = () => {
+    setStart(0);
+    setEnd(displayedCards);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!byRating) {
+        var data = await fetchCoursesByCriteria(categories[selected].name);
+      }
+      setResponse(data); // Save the response in the state
+    };
+
+    fetchData();
+  }, [byRating, categories, selected]);
+
+  const courses = [];
+
+  if (response !== undefined) {
+    console.log(response.data.courses);
+    for (const course of response.data.courses) {
+      var instructors = "";
+      const length = course.classified_product.instructors.length;
+      for (let i = 0; i < length; i++) {
+        console.log(course.classified_product.instructors[i].name);
+        if (i !== length - 1) {
+          instructors =
+            instructors + `${course.classified_product.instructors[i].name}, `;
+        } else
+          instructors =
+            instructors + `${course.classified_product.instructors[i].name}`;
+      }
+
+      courses.push({
+        name: course.classified_product.title,
+        instructors: instructors,
+        rating: course.final_rating_from_reviews,
+        description: course.classified_product.description,
+        discountedPrice: 17.99,
+        price: 40.99,
+      });
+    }
+  }
+
+  courses.push(...staticCourses);
+
+  for (let i = 0; i < courses.length; i++) {
+    courses[i] = { ...courses[i], id: i };
+  }
 
   return (
     <Stack
@@ -100,16 +112,19 @@ export default function Slideshow({
 
       {categories && (
         <CategoryButtonsGroup
-          displayedCategories={displayedCategories}
           categories={categories}
+          categoryState={{ selected, setSelected }}
+          displayedCategories={displayedCategories}
+          resetCards={resetCards}
         />
       )}
 
       <CardsList
-        content={courses}
+        content={isForCourses ? courses : certificates}
         isForCourses={isForCourses}
         byRating={byRating}
         displayedCards={displayedCards}
+        cardsState={{ start, setStart, end, setEnd }}
       />
 
       {!byRating && (
