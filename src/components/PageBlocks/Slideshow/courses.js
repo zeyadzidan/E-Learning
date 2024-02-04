@@ -1,0 +1,42 @@
+export const staticCourses = [
+  {
+    name: "Introduction to Machine Learning",
+    tags: "machine learning",
+    instructors: "Prof. John Doe",
+    rating: 1,
+    discountedPrice: 17.99,
+    price: 40.99,
+  },
+  {
+    name: "Cracking the nut of security systems in a nutshell savjnkd ajksndvdjahbskjba djhkfb adkfjb djhkb adjhk fbh bsdahj badjhk bahkjabv djhk bahjk vadbh va",
+    tags: "security systems",
+    instructors: "Prof. Smith Rowe",
+    rating: 5,
+    discountedPrice: 17.99,
+    price: 40.99,
+  },
+  {
+    name: "Computer Vision",
+    tags: "computer vision",
+    instructors: "Prof. Anthony Martial",
+    rating: 2,
+    discountedPrice: 17.99,
+    price: 40.99,
+  },
+  {
+    name: "Getting a life",
+    tags: "grass",
+    instructors: "Prof. No Lifer",
+    rating: 5,
+    discountedPrice: 17.99,
+    price: 40.99,
+  },
+  {
+    name: "Game Development",
+    tags: "video games",
+    instructors: "Not So Epic Games Professors",
+    rating: 3,
+    discountedPrice: 17.99,
+    price: 40.99,
+  },
+];
