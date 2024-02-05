@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import WishlistButton from "./WishlistButton";
+import WishlistButton from "../Buttons/WishlistButton";
 
 export default function MediaContent({ isCourse, image }) {
   return (

@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
-import MediaContent from "./CardContent/MediaContent";
-import CourseContent from "./CardContent/CourseContent";
-import CertContent from "./CardContent/CertContent";
-import EnrollButtons from "./CardContent/EnrollButtons";
+import MediaContent from "../atoms/CardContent/MediaContent"
+import CourseContent from "../atoms/CardContent/CourseContent";
+import CertContent from "../atoms/CardContent/CertContent";
+import EnrollButtons from "../atoms/Buttons/EnrollButtons";
 
 export default function Card({ content, isCourse, image }) {
   return (

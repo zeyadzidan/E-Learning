@@ -23,6 +23,7 @@ export default function EnrollButtons({ course }) {
           lineHeight: "18.75px",
           letterSpacing: "0.14px",
           borderRadius: "12px 12px 12px 12px",
+          marginRight: "10px"
         }}
         onClick={() => {
           console.log(`Enrolled in ${course.name}`);

@@ -1,7 +1,7 @@
 import { Box, Button, IconButton, Stack } from "@mui/material";
-import edugram from "../../../assets/logo.png";
+import edugram from "../../assets/logo.png";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import SearchBar from "./SearchBar/SearchBar";
+import SearchBar from "../molecules/SearchBar";
 
 export default function Header() {
   return (

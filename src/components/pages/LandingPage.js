@@ -1,9 +1,10 @@
-import Intro from "./PageBlocks/Intro";
-import LearningProcess from "./PageBlocks/LearningProcess/LearningProcess";
-import Benefits from "./PageBlocks/Benefits";
-import Slideshow from "./PageBlocks/Slideshow/Slideshow";
-import Footer from "./PageBlocks/Footer";
-import Clients from "./PageBlocks/Clients";
+import Header from "../templates/Header"
+import Intro from "../templates/Intro";
+import LearningProcess from "../templates/LearningProcess";
+import Benefits from "../templates/Benefits";
+import Slideshow from "../templates/Slideshow";
+import Footer from "../templates/Footer";
+import Clients from "../templates/Clients";
 import { Stack } from "@mui/material";
 
 export default function LandingPage() {
@@ -45,6 +46,7 @@ export default function LandingPage() {
         displayedCards={4}
       />
       <Footer />
+      <Header />
     </Stack>
   );
 }

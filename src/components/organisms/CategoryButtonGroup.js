@@ -2,7 +2,7 @@ import { Button, IconButton, Stack } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useState } from "react";
-import mainTheme from "../../../themes/main-theme";
+import mainTheme from "../../themes/main-theme";
 
 export default function CategoryButtonsGroup({
   categories,

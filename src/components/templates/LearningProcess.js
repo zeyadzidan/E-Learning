@@ -1,9 +1,9 @@
 import { Box, Stack, Tooltip, Typography, IconButton } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import LearningProcessCard from "./LearningProcessIcon";
-import choose from "../../../assets/choose.png";
-import learn from "../../../assets/learn.png";
-import earn from "../../../assets/earn.png";
+import LearningProcessCard from "../atoms/LearningProcessIcon";
+import choose from "../../assets/choose.png";
+import learn from "../../assets/learn.png";
+import earn from "../../assets/earn.png";
 
 export default function LearningProcess() {
   return (
