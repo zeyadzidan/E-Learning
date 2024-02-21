@@ -12,7 +12,7 @@ import ibmCert from "../../assets/ibm_cert.png";
 
 export default function CardsList({
   content,
-  isForCourses,
+  isCourses,
   cardsState,
   byRating,
 }) {
@@ -41,9 +41,9 @@ export default function CardsList({
     <Card
       key={content.name}
       content={content}
-      isCourse={isForCourses}
+      isCourse={isCourses}
       image={
-        isForCourses
+        isCourses
           ? courses[content.id % courses.length]
           : certs[index % certs.length]
       }
