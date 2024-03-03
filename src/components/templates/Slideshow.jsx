@@ -7,7 +7,7 @@ import ViewMoreButton from "../atoms/Buttons/ViewMoreButton";
 
 export default function Slideshow({
   categories,
-  selectedState,
+  onSelect,
   displayedCategories,
   content,
   isCourses,
@@ -29,7 +29,7 @@ export default function Slideshow({
       return (
         <CategoryButtonsGroup
           categories={categories}
-          categoryState={selectedState}
+          onSelect={onSelect}
           displayedCategories={displayedCategories}
           resetCards={resetCards}
         />
@@ -63,8 +63,6 @@ export default function Slideshow({
       );
     }
   };
-
-  console.log(content);
 
   return (
     <Stack

@@ -39,7 +39,7 @@ export default function CardsList({
 
   const renderedContent = slicedContent.map((content, index) => (
     <Card
-      key={content.name}
+      key={content.id}
       content={content}
       isCourse={isCourses}
       image={

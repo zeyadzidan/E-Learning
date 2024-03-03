@@ -8,7 +8,7 @@ import Clients from "../templates/Clients";
 import { Stack } from "@mui/material";
 import { staticCourses } from "../atoms/StaticLists/courses";
 import { certificates } from "../atoms/StaticLists/certificates";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetchCoursesBySubjectQuery } from "../../store";
 
 export default function LandingPage() {
@@ -34,18 +34,25 @@ export default function LandingPage() {
   const [selectedCourseCategory, setSelectedCourseCategory] = useState(0);
   const [selectedCertCategory, setSelectedCertCategory] = useState(0);
 
-  const selectedCourseState = {
-    selected: selectedCourseCategory,
-    setSelected: setSelectedCourseCategory,
+  const handleCourseCatSelect = (idx) => {
+    setSelectedCourseCategory(idx);
   };
-  const selectedCertState = {
-    selected: selectedCertCategory,
-    setSelected: setSelectedCertCategory,
+
+  const handleCertCatSelect = (idx) => {
+    setSelectedCertCategory(idx);
   };
 
   const subject = coursesCategories[selectedCourseCategory].name;
 
-  const { data, error, isFetching } = useFetchCoursesBySubjectQuery(subject);
+  const { data, error, isFetching, refetch } =
+    useFetchCoursesBySubjectQuery(subject);
+
+  useEffect(() => {
+    if (subject) {
+      console.log(subject);
+      refetch();
+    }
+  }, [subject, refetch]);
 
   if (isFetching) {
     return (
@@ -54,7 +61,7 @@ export default function LandingPage() {
         <LearningProcess />
         <Slideshow
           categories={coursesCategories}
-          selectedState={selectedCourseState}
+          onSelect={handleCourseCatSelect}
           isCourses
           displayedCategories={5}
           displayedCards={4}
@@ -65,7 +72,7 @@ export default function LandingPage() {
         <Clients />
         <Slideshow
           categories={certCategories}
-          selectedState={selectedCertState}
+          onSelect={handleCertCatSelect}
           content={certificates}
           displayedCategories={4}
           displayedCards={4}
@@ -79,6 +86,8 @@ export default function LandingPage() {
   const courses = [];
 
   if (!error) {
+    console.log(data);
+
     for (const course of data.data.courses) {
       let instructors = "";
       const length = course.classified_product.instructors.length;
@@ -114,7 +123,7 @@ export default function LandingPage() {
       <LearningProcess />
       <Slideshow
         categories={coursesCategories}
-        selectedState={selectedCourseState}
+        onSelect={handleCourseCatSelect}
         displayedCategories={5}
         content={courses}
         isCourses
@@ -125,7 +134,7 @@ export default function LandingPage() {
       <Clients />
       <Slideshow
         categories={certCategories}
-        selectedState={selectedCertState}
+        onSelect={handleCertCatSelect}
         displayedCategories={4}
         content={certificates}
         displayedCards={4}
